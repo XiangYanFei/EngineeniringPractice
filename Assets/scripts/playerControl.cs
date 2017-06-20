@@ -9,28 +9,24 @@ public class playerControl : MonoBehaviour {
 	[HideInInspector]
 	public bool bFaceRight = true;
 	public Rigidbody herobody;
-	//private Transform mGroundCheck;
 	public bool bJump = false;
 	private bool bGrounded = false;
 	//private SpriteRenderer blood;
-	//private Animator anim;
+	private Animator anim;
 
 	private void Awake()
 	{
-		//	mGroundCheck = transform.Find("groundcheck");
 		//blood = GameObject.Find("Health").GetComponent<SpriteRenderer>();
 	}
 
 	void Start () {
 		herobody.gameObject.GetComponent<Rigidbody>();
-		//anim = GetComponent<Animator>(); 
+		anim = GetComponent<Animator>(); 
 
 	}
 
 	void Update()
 	{
-		//	int nlayer = LayerMask.NameToLayer("ground");
-		//	bGrounded = Physics2D.Linecast(transform.position, mGroundCheck.position, 1 << nlayer);
 		if (Input.GetKeyDown (KeyCode.W) && bGrounded) {
 			print ("fff");
 			bJump = true;
@@ -38,19 +34,16 @@ public class playerControl : MonoBehaviour {
 		if (bJump) {
 			print ("ddd");
 			herobody.AddForce (Vector2.up * JumpForce);
-			//anim.SetBool ("jump", bJump);
-			//print ("DDD");
+			anim.SetTrigger ("Jump");
 			bJump = false;
 		} 
-		//bJump = false;
-		//anim.SetBool ("jump", bJump);
-		//anim.SetBool ("jump", bJump);
 	}
 
 	void FixedUpdate()
 	{
 		float h = Input.GetAxis("Horizontal");
-		//anim.SetFloat("speed", Mathf.Abs(h));
+		anim.SetFloat("speed", Mathf.Abs(h));
+		Debug.Log (h);
 
 		if (herobody.velocity.x <= MaxSpeed)                    //添加小于等于，使其可以在空中左右走S型
 			herobody.AddForce(Vector2.right * h * MaxFroce);
@@ -61,30 +54,18 @@ public class playerControl : MonoBehaviour {
 			Flip();
 		else if (h < 0 && bFaceRight)
 			Flip();
-		/*
-		if (bJump)
-		{ 
-			print ("aaa");
-			herobody.AddForce(Vector2.up * JumpForce);
-			print ("bbb");
-			//anim.SetTrigger("jump");
-			bJump = false;
-		}
-		*/
 	}
 
 	public void OnCollisionEnter(Collision col){
 		if (col.collider.tag == "ground")
 			print ("开始碰撞");
 		bGrounded = true;
-		//	anim.SetBool ("bGrounded", bGrounded);
 	}
 
 	public void OnCollisionExit(Collision col) {
 		if (col.collider.tag == "ground")
 			print ("碰撞结束");
 		bGrounded = false;
-		//	anim.SetBool ("bGrounded", bGrounded);
 	}
 
 	void Flip()                                                 //功能：转身
