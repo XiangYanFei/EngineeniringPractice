@@ -47,10 +47,12 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\scripts\GameManager.cs" />
+     <Compile Include="Assets\scripts\knife.cs" />
      <Compile Include="Assets\scripts\moveTrigger.cs" />
      <Compile Include="Assets\scripts\platformer.cs" />
      <Compile Include="Assets\scripts\playerControl.cs" />
-     <Compile Include="Assets\weapon.cs" />
+     <Compile Include="Assets\scripts\weapon.cs" />
+     <Compile Include="Assets\scripts\weapon1.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
