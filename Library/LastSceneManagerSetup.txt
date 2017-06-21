@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/prefabs/001-play.unity
+- path: Assets/001-play.unity
   isLoaded: 1
   isActive: 1
