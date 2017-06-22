@@ -20,6 +20,7 @@ public class knife : MonoBehaviour {
 
 		// Instantiate the explosion where the rocket is with the random rotation.
 		explo=GameObject.Instantiate(explosion, transform.position, randomRotation)as GameObject;
+		Destroy(explo,0.2F);
 
 	}
 	void Update () {
@@ -30,25 +31,22 @@ public class knife : MonoBehaviour {
 	void OnCollisionEnter(Collision col) 
 	{
 		if(col.collider.tag == "ground") {
-			print ("111111");
-			//Destroy (this.gameObject);
 			OnExplode();
 			Destroy (gameObject);
-			Destroy(explo,0.2F);
 		}
-		/*
-		if(col.tag == "Enemy")
+
+		if(col.collider.tag == "enemy")
 		{
-			// ... find the Enemy script and call the Hurt function.
-			col.gameObject.GetComponent<Enemy>().Hurt();
-
-			// Call the explosion instantiation.
+			// ... find the enemy script and call the Hurt function.
+			col.gameObject.GetComponent<enemy>().Hurt();
+			// Destroy the enemy
 			OnExplode();
+			Destroy (col.gameObject);
+			GameObject.Find ("hero").GetComponent<playerControl> ().score += 10;
+			print (GameObject.Find ("hero").GetComponent<playerControl> ().score);
 
-			// Destroy the rocket.
-			Destroy (gameObject);
 		}
-		*/
+	
 		/*
 		Destroy (this.explosion);
 		Instantiate (explosion, this.transform.position, Quaternion.identity);
@@ -62,8 +60,6 @@ public class knife : MonoBehaviour {
 	/*	if (col.gameObject.layer == LayerMask.NameToLayer ("Enemy")) {
 			//敌人死亡，玩家加分
 			Destroy (col.gameObject);
-			GameObject.Find ("Hero").GetComponent<PlayerControl> ().score += 10;
-			print (GameObject.Find ("Hero").GetComponent<PlayerControl> ().score);
 			GameObject.Find ("Score").GetComponent<GUIText> ().text = "Score:" + GameObject.Find ("Hero").GetComponent<PlayerControl> ().score.ToString ();
 		}
 		*/

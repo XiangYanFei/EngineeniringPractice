@@ -13,6 +13,8 @@ public class playerControl : MonoBehaviour {
 	private bool bGrounded = false;
 	//private SpriteRenderer blood;
 	private Animator anim;
+	public float score=0;
+	public float HP=100;
 
 	private void Awake()
 	{
