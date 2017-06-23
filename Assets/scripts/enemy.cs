@@ -20,21 +20,25 @@ public class enemy : MonoBehaviour {
 
 	}
 	void FixedUpdate(){
+		/*
 		// Create an array of all the colliders in front of the enemy.
-		RaycastHit[] frontHits = Physics.RaycastAll(frontcheck.position,transform.forward, 1);
-
+		RaycastHit[] frontHits = Physics.RaycastAll(frontcheck.position,transform.forward, 10);
+	
 		// Check each of the colliders.
 		foreach(RaycastHit c in frontHits)
 		{
+			print ("ddd");
+			Flip ();
 			// If any of the colliders is an Obstacle...
-			if(c.collider.tag == "Obstacle")
+			if(c.collider.tag != "ground")
 			{
 				// ... Flip the enemy and stop checking the other colliders.
 				Flip ();
 				break;
 			}
 		}
-		this.GetComponent<Rigidbody> ().velocity = new Vector2 (
+		*/
+			this.GetComponent<Rigidbody> ().velocity = new Vector2 (
 			m_speed * this.transform.localScale.x,this.GetComponent<Rigidbody> ().velocity.y 
 		);
 
@@ -43,12 +47,16 @@ public class enemy : MonoBehaviour {
 	{
 		// Reduce the number of hit points by one.
 		HP--;
+		Debug.Log (HP);
 	}
 
 	public void OnCollisionEnter(Collision col){
 		if (col.collider.tag == "deadline")
 			Destroy(gameObject);
+		if (col.collider.tag == "flap")
+			Flip ();
 	}
+
 	public void Flip()
 	{
 		// Multiply the x component of localScale by -1.
