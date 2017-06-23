@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\scripts\GameManager.cs" />
+     <Compile Include="Assets\scripts\cameraFollow.cs" />
      <Compile Include="Assets\scripts\enemy.cs" />
      <Compile Include="Assets\scripts\knife.cs" />
      <Compile Include="Assets\scripts\moveTrigger.cs" />
