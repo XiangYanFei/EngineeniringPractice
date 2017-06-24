@@ -29,27 +29,23 @@ public class playerControl : MonoBehaviour {
 
 	void Update()
 	{
-		if (Input.GetKeyDown (KeyCode.W) && bGrounded) {
-			print ("fff");
+		if (Input.GetKeyDown (KeyCode.W) && bGrounded)
+		{
 			bJump = true;
 		}
-		if (bJump) {
+		if (bJump) 
+		{
 			print ("ddd");
 			herobody.AddForce (Vector2.up * JumpForce);
 			anim.SetTrigger ("Jump");
 			bJump = false;
 		} 
-		/*
-		 if (Input.mousePosition.x > transform.position.x)
-			Flip();
-		*/
 	}
 
 	void FixedUpdate()
 	{
 		float h = Input.GetAxis("Horizontal");
 		anim.SetFloat("speed", Mathf.Abs(h));
-		//Debug.Log (h);
 
 		if (herobody.velocity.x <= MaxSpeed)                    //添加小于等于，使其可以在空中左右走S型
 			herobody.AddForce(Vector2.right * h * MaxFroce);
@@ -64,13 +60,13 @@ public class playerControl : MonoBehaviour {
 
 	public void OnCollisionEnter(Collision col){
 		if (col.collider.tag == "ground")
-			print ("开始碰撞");
+			//print ("开始碰撞");
 		bGrounded = true;
 	}
 
 	public void OnCollisionExit(Collision col) {
 		if (col.collider.tag == "ground")
-			print ("碰撞结束");
+			//print ("碰撞结束");
 		bGrounded = false;
 	}
 

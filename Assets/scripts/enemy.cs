@@ -6,6 +6,7 @@ public class enemy : MonoBehaviour {
 	public float m_speed = 2f;
 	private Transform frontcheck;		// Reference to the position of the gameobject used for checking if something is in front.
 	public int HP = 2;					// How many times the enemy can be hit before it dies.
+
 	void Awake (){
 		
 	}
@@ -19,29 +20,10 @@ public class enemy : MonoBehaviour {
 	void Update () {
 
 	}
-	void FixedUpdate(){
-		/*
-		// Create an array of all the colliders in front of the enemy.
-		RaycastHit[] frontHits = Physics.RaycastAll(frontcheck.position,transform.forward, 10);
-	
-		// Check each of the colliders.
-		foreach(RaycastHit c in frontHits)
-		{
-			print ("ddd");
-			Flip ();
-			// If any of the colliders is an Obstacle...
-			if(c.collider.tag != "ground")
-			{
-				// ... Flip the enemy and stop checking the other colliders.
-				Flip ();
-				break;
-			}
-		}
-		*/
-			this.GetComponent<Rigidbody> ().velocity = new Vector2 (
-			m_speed * this.transform.localScale.x,this.GetComponent<Rigidbody> ().velocity.y 
-		);
-
+	void FixedUpdate()
+	{
+		this.GetComponent<Rigidbody> ().velocity = new Vector2 (
+		m_speed * this.transform.localScale.x,this.GetComponent<Rigidbody> ().velocity.y);
 	}
 	public void Hurt()
 	{
@@ -59,7 +41,6 @@ public class enemy : MonoBehaviour {
 
 	public void Flip()
 	{
-		// Multiply the x component of localScale by -1.
 		Vector3 enemyScale = transform.localScale;
 		enemyScale.x *= -1;
 		transform.localScale = enemyScale;
