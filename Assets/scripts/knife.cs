@@ -13,7 +13,7 @@ public class knife : MonoBehaviour {
 	// Update is called once per frame
 	void OnExplode()
 	{
-		print ("22222");
+		//print ("22222");
 		// Create a quaternion with a random rotation in the z-axis.
 		Quaternion randomRotation = Quaternion.Euler(0f, 0f, Random.Range(0f, 360f));
 		
