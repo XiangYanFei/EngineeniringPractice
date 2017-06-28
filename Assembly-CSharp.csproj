@@ -53,6 +53,7 @@
      <Compile Include="Assets\scripts\moveTrigger.cs" />
      <Compile Include="Assets\scripts\platformer.cs" />
      <Compile Include="Assets\scripts\playerControl.cs" />
+     <Compile Include="Assets\scripts\playerHealth.cs" />
      <Compile Include="Assets\scripts\spawner.cs" />
      <Compile Include="Assets\scripts\weapon1.cs" />
  <Reference Include="UnityEngine.UI">

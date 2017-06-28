@@ -11,25 +11,36 @@ public class knife : MonoBehaviour {
 	public Vector3 pointB;//点B
 	public float g=-10;//重力加速度
 	// Use this for initialization
-	private Vector3 speed;//初速度向量
-	private Vector3 Gravity;//重力向量
-	/*
-	public float Power = 10;//发射时的速度（力度）
-	public float Angle=45;//发射的角度
-	public float Gravity = -10;
-	private Vector3 MoveSpeed;//初速度向量
-	private Vector3 GritySpeed=Vector3.zero;//重力的速度向量，t时为0
-	private float dTime; //已经过去的时间
-	private Vector3 currentAngle;
-	*/
-	// Use this for initialization
+	public Vector3 speed;//初速度向量
+	public Vector3 Gravity;//重力向量
+
+	private playerControl playerControl;		// Reference to the PlayerControl script.
+
+	void Awake(){
+	}
+
 	void Start () {
+		print ("ddd");
+		playerControl = GameObject.Find("hero").GetComponent<playerControl>();
 		pointA = transform;
 		pointB = GameObject.Find ("weapon").GetComponent<weapon1> ().mousePositionInWorld;
-		//transform.position = pointA.position;//将物体置于A点
+		transform.position = pointA.position;//将物体置于A点
 		//通过一个式子计算初速度
-		speed = new Vector3((pointB.x - pointA.position.x)/time,
-			(pointB.y-pointA.position.y)/time-0.5f*g*time, (pointB.z - pointA.position.z) / time);
+		if (playerControl.bFaceRight) 
+		{
+			speed = new Vector3 ((pointB.x - pointA.position.x) / time,
+				(pointB.y - pointA.position.y) / time - 0.5f * g * time, (pointB.z - pointA.position.z) / time);
+			print ("向右发射");
+		} 
+		else 
+		{
+			Vector3 localScale = gameObject.transform.localScale;
+			localScale.x *= -1;
+			gameObject.transform.localScale = localScale;
+			speed = new Vector3 (-(pointB.x - pointA.position.x) / time,
+				(pointB.y - pointA.position.y) / time - 0.5f * g * time, (pointB.z - pointA.position.z) / time);
+			print ("向左发射");
+		}
 		Gravity = Vector3.zero;//重力初始速度为0
 		/*
 		//通过一个公式计算出初速度向量，角度*力度

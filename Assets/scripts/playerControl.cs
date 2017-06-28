@@ -14,7 +14,6 @@ public class playerControl : MonoBehaviour {
 	//private SpriteRenderer blood;
 	private Animator anim;
 	public float score=0;
-	public float HP=100;
 
 	private void Awake()
 	{
@@ -35,7 +34,6 @@ public class playerControl : MonoBehaviour {
 		}
 		if (bJump) 
 		{
-			print ("ddd");
 			herobody.AddForce (Vector2.up * JumpForce);
 			anim.SetTrigger ("Jump");
 			bJump = false;

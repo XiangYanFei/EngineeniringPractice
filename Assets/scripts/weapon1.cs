@@ -17,10 +17,11 @@ public class weapon1 : MonoBehaviour {
 	}
 
 	void Start () {
+		
 	}
 
 	void Update () {
-		if (Input.GetMouseButton(0))
+		if (Input.GetMouseButtonDown(0))
 		{
 			Vector3 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
 			Vector3 mousePositionOnScreen = Input.mousePosition;   
@@ -37,6 +38,7 @@ public class weapon1 : MonoBehaviour {
 					//	print ("面向右不转身");
 					anim.SetTrigger ("Attack");
 					Rigidbody knifeInstance = Instantiate (knife, transform.position, transform.rotation) as Rigidbody;
+					print ("aaa");
 				} 
 				if(mousePositionInWorld.x < gameObject.transform.parent.position.x) 	
 				{
