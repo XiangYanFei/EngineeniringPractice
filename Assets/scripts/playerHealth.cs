@@ -1,16 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class playerHealth : MonoBehaviour {
 
 	public float health = 100f;					// The player's health.
+	public float money = 0;
+	public float flower=0;
 	public float repeatDamagePeriod = 2f;		// How frequently the player can be damaged.
 	//public AudioClip[] ouchClips;				// Array of clips to play when the player is damaged.
 	public float hurtForce = 10f;				// The force with which the player is pushed when hurt.
 	public float damageAmount = 10f;			// The amount of damage to take when enemies touch the player
 
-	//private SpriteRenderer healthBar;			// Reference to the sprite renderer of the health bar.
+	public UISlider mainSlider;			// Reference to the sprite renderer of the health bar.
+	public UILabel moneylable;			// Reference to the sprite renderer of the health bar.
+	public UILabel scorelable;			// Reference to the sprite renderer of the health bar.
+
+
+
 	private float lastHitTime;					// The time at which the player was last hit.
 	private Vector3 healthScale;				// The local scale of the health bar initially (with full health).
 	private playerControl playerControl;		// Reference to the PlayerControl script.
@@ -63,11 +71,19 @@ public class playerHealth : MonoBehaviour {
 			print ("dead");
 		}
 		if (col.collider.tag == "flower") {
-			if(health > 0f)
+			if(health > 0f && health < 100f)
 			{
 				health += damageAmount;
 				print ("加血");
+				Destroy (col.gameObject);
+				Debug.Log (health);
 			}
+		}
+		if (col.collider.tag == "money") {
+				money += 10;
+				print ("加钱");
+				Destroy (col.gameObject);
+				Debug.Log (money);
 		}
 	}
 
@@ -87,7 +103,7 @@ public class playerHealth : MonoBehaviour {
 		health -= damageAmount;
 
 		// Update what the health bar looks like.
-		UpdateHealthBar();
+		//UpdateHealthBar();
 
 		// Play a random clip of the player getting hurt.
 		//int i = Random.Range (0, ouchClips.Length);
@@ -165,17 +181,22 @@ public class playerHealth : MonoBehaviour {
 		// Instantiate the 100 points prefab at this point.
 		//Instantiate(hundredPointsUI, scorePos, Quaternion.identity);
 	}
-
+	/*
 	public void UpdateHealthBar ()
 	{
-		Debug.Log (health);
 		// Set the health bar's colour to proportion of the way between green and red based on the player's health.
 		//healthBar.material.color = Color.Lerp(Color.green, Color.red, 1 - health * 0.01f);
 
 		// Set the scale of the health bar to be proportional to the player's health.
 		//healthBar.transform.localScale = new Vector3(healthScale.x * health * 0.01f, 1, 1);
 	}
+*/
 	void Update(){
-		
+		Debug.Log (health);
+		mainSlider.value = health / 100f;
+		moneylable.text = money.ToString();
+		scorelable.text = (string)GameObject.Find ("hero").GetComponent<playerControl> ().score.ToString();
+		Debug.Log (mainSlider.value);
+		//GameObject.Find ("hero").GetComponent<playerControl> ().score += 10;
 	}
 }

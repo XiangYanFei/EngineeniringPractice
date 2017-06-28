@@ -4,7 +4,7 @@ using System.Collections;
 public class enemy : MonoBehaviour {
 
 	public float m_speed = 2f;
-	private Transform frontcheck;		// Reference to the position of the gameobject used for checking if something is in front.
+	//private Transform frontcheck;		// Reference to the position of the gameobject used for checking if something is in front.
 	public int HP = 2;					// How many times the enemy can be hit before it dies.
 
 	void Awake (){
@@ -12,7 +12,7 @@ public class enemy : MonoBehaviour {
 	}
 	// Use this for initialization
 	void Start () {
-		frontcheck = transform.Find("frontcheck").transform;
+		//frontcheck = transform.Find("frontcheck").transform;
 
 	}
 
@@ -29,12 +29,10 @@ public class enemy : MonoBehaviour {
 	{
 		// Reduce the number of hit points by one.
 		HP--;
-		Debug.Log (HP);
+//		Debug.Log (HP);
 	}
 
 	public void OnCollisionEnter(Collision col){
-		if (col.collider.tag == "deadline")
-			Destroy(gameObject);
 		if (col.collider.tag == "flap")
 			Flip ();
 	}

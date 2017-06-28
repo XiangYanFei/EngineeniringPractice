@@ -6,6 +6,7 @@ public class knife : MonoBehaviour {
 	public GameObject explosion;  //定义爆炸prefeb
 	private GameObject explo;
 
+	//public float score = 0;
 	public float time=3;//代表从A点出发到B经过的时长
 	public Transform pointA;//点A
 	public Vector3 pointB;//点B
@@ -20,9 +21,8 @@ public class knife : MonoBehaviour {
 	}
 
 	void Start () {
-		print ("ddd");
 		playerControl = GameObject.Find("hero").GetComponent<playerControl>();
-		pointA = transform;
+		pointA = gameObject.transform;
 		pointB = GameObject.Find ("weapon").GetComponent<weapon1> ().mousePositionInWorld;
 		transform.position = pointA.position;//将物体置于A点
 		//通过一个式子计算初速度
