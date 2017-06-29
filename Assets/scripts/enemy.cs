@@ -4,17 +4,7 @@ using System.Collections;
 public class enemy : MonoBehaviour {
 
 	public float m_speed = 2f;
-	//private Transform frontcheck;		// Reference to the position of the gameobject used for checking if something is in front.
-	public int HP = 2;					// How many times the enemy can be hit before it dies.
-
-	void Awake (){
-		
-	}
-	// Use this for initialization
-	void Start () {
-		//frontcheck = transform.Find("frontcheck").transform;
-
-	}
+	public int HP = 2;					
 
 	// Update is called once per frame
 	void Update () {
@@ -27,9 +17,7 @@ public class enemy : MonoBehaviour {
 	}
 	public void Hurt()
 	{
-		// Reduce the number of hit points by one.
 		HP--;
-//		Debug.Log (HP);
 	}
 
 	public void OnCollisionEnter(Collision col){

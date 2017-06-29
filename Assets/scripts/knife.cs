@@ -78,9 +78,7 @@ public class knife : MonoBehaviour {
 
 	void OnExplode()
 	{
-		// Create a quaternion with a random rotation in the z-axis.
 		Quaternion randomRotation = Quaternion.Euler(0f, 0f, Random.Range(0f, 360f));
-		// Instantiate the explosion where the rocket is with the random rotation.
 		explo=GameObject.Instantiate(explosion, transform.position, randomRotation)as GameObject;
 		Destroy(explo,0.2F);
 		
@@ -101,31 +99,15 @@ public class knife : MonoBehaviour {
 			// Destroy the enemy
 			OnExplode();
 			Destroy (col.gameObject);
+
 			GameObject.Find ("hero").GetComponent<playerControl> ().score += 10;
-			print (GameObject.Find ("hero").GetComponent<playerControl> ().score);
+			//print (GameObject.Find ("hero").GetComponent<playerControl> ().score);
 
 		}
 		if(col.collider.tag == "deadline")
 		{
 			Destroy (gameObject);
 		}
-	
-		/*
-		Destroy (this.explosion);
-		Instantiate (explosion, this.transform.position, Quaternion.identity);
-		*/
-		//OnExplode();
-		//Quaternion q=Quaternion.Euler(new Vector3(0,0,Random.Range(0,360)));
-		//GameObject e = (GameObject)Instantiate (explosion, this.transform.position, q);
-		//Destroy (e, 0.333f);
-		//Destroy (gameObject);
-
-	/*	if (col.gameObject.layer == LayerMask.NameToLayer ("Enemy")) {
-			//敌人死亡，玩家加分
-			Destroy (col.gameObject);
-			GameObject.Find ("Score").GetComponent<GUIText> ().text = "Score:" + GameObject.Find ("Hero").GetComponent<PlayerControl> ().score.ToString ();
-		}
-		*/
 	}
 
 }

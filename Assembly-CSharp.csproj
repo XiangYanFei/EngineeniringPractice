@@ -194,7 +194,11 @@
      <Compile Include="Assets\NGUI\Scripts\UI\UITexture.cs" />
      <Compile Include="Assets\NGUI\Scripts\UI\UITooltip.cs" />
      <Compile Include="Assets\NGUI\Scripts\UI\UIViewport.cs" />
+     <Compile Include="Assets\scripts\GameControl.cs" />
+     <Compile Include="Assets\scripts\GameControl1.cs" />
+     <Compile Include="Assets\scripts\GameControl2.cs" />
      <Compile Include="Assets\scripts\GameManager.cs" />
+     <Compile Include="Assets\scripts\SceneRecord.cs" />
      <Compile Include="Assets\scripts\cameraFollow.cs" />
      <Compile Include="Assets\scripts\enemy.cs" />
      <Compile Include="Assets\scripts\knife.cs" />
