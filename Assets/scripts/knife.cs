@@ -6,14 +6,15 @@ public class knife : MonoBehaviour {
 	public GameObject explosion;  //定义爆炸prefeb
 	private GameObject explo;
 
-	//public float score = 0;
-	public float time=3;//代表从A点出发到B经过的时长
-	public Transform pointA;//点A
-	public Vector3 pointB;//点B
-	public float g=-10;//重力加速度
-	// Use this for initialization
-	public Vector3 speed;//初速度向量
-	public Vector3 Gravity;//重力向量
+
+	public float Power=10;//这个代表发射时的速度/力度等，可以通过此来模拟不同的力大小
+	public float Angle=45;//发射的角度，这个就不用解释了吧
+	public float Gravity = -10;//这个代表重力加速度
+	public bool IsOne=false;
+	private Vector3 MoveSpeed;//初速度向量
+	private Vector3 GritySpeed = Vector3.zero;//重力的速度向量，t时为0
+	private float dTime;//已经过去的时间
+	private Vector3 currentAngle;
 
 	private playerControl playerControl;		// Reference to the PlayerControl script.
 
@@ -22,14 +23,9 @@ public class knife : MonoBehaviour {
 
 	void Start () {
 		playerControl = GameObject.Find("hero").GetComponent<playerControl>();
-		pointA = gameObject.transform;
-		pointB = GameObject.Find ("weapon").GetComponent<weapon1> ().mousePositionInWorld;
-		transform.position = pointA.position;//将物体置于A点
-		//通过一个式子计算初速度
 		if (playerControl.bFaceRight) 
 		{
-			speed = new Vector3 ((pointB.x - pointA.position.x) / time,
-				(pointB.y - pointA.position.y) / time - 0.5f * g * time, (pointB.z - pointA.position.z) / time);
+			MoveSpeed = Quaternion.Euler(new Vector3(0, 0, Angle)) * Vector3.right * Power;
 			print ("向右发射");
 		} 
 		else 
@@ -37,37 +33,19 @@ public class knife : MonoBehaviour {
 			Vector3 localScale = gameObject.transform.localScale;
 			localScale.x *= -1;
 			gameObject.transform.localScale = localScale;
-			speed = new Vector3 (-(pointB.x - pointA.position.x) / time,
-				(pointB.y - pointA.position.y) / time - 0.5f * g * time, (pointB.z - pointA.position.z) / time);
+			MoveSpeed = Quaternion.Euler(new Vector3(0, 0, Angle)) * Vector3.left * Power;
 			print ("向左发射");
 		}
-		Gravity = Vector3.zero;//重力初始速度为0
-		/*
-		//通过一个公式计算出初速度向量，角度*力度
-		MoveSpeed = Quaternion.Euler (new Vector3 (-Angle, 0, 0)) * Vector3.forward * Power;
 		currentAngle = Vector3.zero;
-		Destroy (gameObject,3); 
-		*/
 	}
-
-	private float dTime=0;
 
 	void FixedUpdate()
 	{
-		Gravity.y = g * (dTime += Time.fixedDeltaTime);//v=at
-		//模拟位移
-		transform.Translate(speed*Time.fixedDeltaTime);
-		transform.Translate(Gravity * Time.fixedDeltaTime);
-		/*
-		//计算物体的重力速度
-		//v = at ;
 		GritySpeed.y = Gravity * (dTime += Time.fixedDeltaTime);
 		//位移模拟轨迹
-		transform.position += (MoveSpeed + GritySpeed) * Time.fixedDeltaTime;
-		currentAngle.z = Mathf.Atan((MoveSpeed.y + GritySpeed.y) / MoveSpeed.x) * Mathf.Rad2Deg;
+		transform.position+=(MoveSpeed + GritySpeed) * Time.fixedDeltaTime;
+		currentAngle.z = Mathf.Atan ((MoveSpeed.y + GritySpeed.y) / MoveSpeed.x) * Mathf.Rad2Deg;
 		transform.eulerAngles = currentAngle;
-		Debug.Log (transform.position);
-		*/
 	}
 
 	// Update is called once per frame
@@ -100,6 +78,7 @@ public class knife : MonoBehaviour {
 			OnExplode();
 			Destroy (col.gameObject);
 
+			//score += 10;
 			GameObject.Find ("hero").GetComponent<playerControl> ().score += 10;
 			//print (GameObject.Find ("hero").GetComponent<playerControl> ().score);
 
@@ -111,3 +90,4 @@ public class knife : MonoBehaviour {
 	}
 
 }
+

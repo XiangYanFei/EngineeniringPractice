@@ -3,7 +3,7 @@ using System.Collections;
 
 public class spawnerFlower : MonoBehaviour
 {
-	public float spawnTime = 25f;		// The amount of time between each spawn.
+	public float spawnTime = 20f;		// The amount of time between each spawn.
 	public float spawnDelay = 3f;		// The amount of time before spawning starts.
 	public GameObject flower;
 	public Transform pointPlatfomer;
@@ -20,13 +20,13 @@ public class spawnerFlower : MonoBehaviour
 	}
 	void Update()
 	{
-		spawnTime += Time.deltaTime;
+		/*spawnTime += Time.deltaTime;
 		if (spawnTime > spawnDelay) 
 		{
 			Instantiate(flower, pointPlatfomer.position, transform.rotation);
 			spawnTime -= spawnDelay;
 		}
-
+*/
 
 	}
 }

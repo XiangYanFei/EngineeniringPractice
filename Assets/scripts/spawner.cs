@@ -3,7 +3,7 @@ using System.Collections;
 
 public class spawner : MonoBehaviour
 {
-	public float spawnTime = 0;		// The amount of time between each spawn.
+	public float spawnTime = 2f;		// The amount of time between each spawn.
 	public float spawnDelay = 25f;		// The amount of time before spawning starts.
 	public GameObject enemy;
 

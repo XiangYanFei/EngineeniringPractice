@@ -197,7 +197,9 @@
      <Compile Include="Assets\scripts\GameControl.cs" />
      <Compile Include="Assets\scripts\GameControl1.cs" />
      <Compile Include="Assets\scripts\GameControl2.cs" />
+     <Compile Include="Assets\scripts\GameControl3.cs" />
      <Compile Include="Assets\scripts\GameManager.cs" />
+     <Compile Include="Assets\scripts\PauseStart.cs" />
      <Compile Include="Assets\scripts\SceneRecord.cs" />
      <Compile Include="Assets\scripts\cameraFollow.cs" />
      <Compile Include="Assets\scripts\enemy.cs" />
@@ -210,6 +212,7 @@
      <Compile Include="Assets\scripts\spawnerFlower.cs" />
      <Compile Include="Assets\scripts\spawnerMoney.cs" />
      <Compile Include="Assets\scripts\weapon1.cs" />
+     <Compile Include="Assets\show.cs" />
      <None Include="Assets\NGUI\Examples\Shaders\Unlit - Depth Cutout.shader" />
      <None Include="Assets\NGUI\ReadMe - 3.11.1.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Masked 1.shader" />

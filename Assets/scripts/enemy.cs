@@ -4,7 +4,7 @@ using System.Collections;
 public class enemy : MonoBehaviour {
 
 	public float m_speed = 2f;
-	public int HP = 2;					
+	public int HP = 1;					
 
 	// Update is called once per frame
 	void Update () {

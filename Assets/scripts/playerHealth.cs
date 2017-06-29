@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class playerHealth : MonoBehaviour {
 
@@ -52,16 +54,19 @@ public class playerHealth : MonoBehaviour {
 			}
 		}
 
-		if (col.collider.tag == "deadline") {
+		if (col.collider.tag == "deadline")
+		{
 			GetComponent<playerControl>().enabled = false;
+			SceneManager.LoadScene (4);
 			print ("dead");
 		}
+
 		if (col.collider.tag == "flower") {
 			if(health > 0f && health < 100f)
 			{
 				health += damageAmount;
-				//print ("加血");
 				Destroy (col.gameObject);
+				print ("加血");
 				//Debug.Log (health);
 			}
 		}
@@ -102,6 +107,7 @@ public class playerHealth : MonoBehaviour {
 
 		anim.SetTrigger("Die");
 		print ("播放死亡动画");
+		SceneManager.LoadScene (4);
 	}
 
 	void Update(){
