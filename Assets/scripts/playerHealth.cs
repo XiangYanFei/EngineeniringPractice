@@ -62,13 +62,10 @@ public class playerHealth : MonoBehaviour {
 		}
 
 		if (col.collider.tag == "flower") {
-			if(health > 0f && health < 100f)
-			{
 				health += damageAmount;
 				Destroy (col.gameObject);
 				print ("加血");
 				//Debug.Log (health);
-			}
 		}
 		if (col.collider.tag == "money") {
 				money += 10;

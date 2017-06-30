@@ -3,6 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class cameraFollow : MonoBehaviour {
+	public int n=3;
+	Vector3 Dir;//摄像机要跟随物体的距离
+	public GameObject Player;//要跟随的物体
+	// Use this for initialization
+	void Start () {
+		Dir.x = Player.transform.position.x - transform.position.x;
+		Dir.y = Player.transform.position.y - transform.position.y-n;
+	}
+
+	// Update is called once per frame
+	void Update () {
+		transform.position = Player.transform.position - Dir;
+	}
+
+}
+/*
 	public float xMargin = 1f;		// Distance in the x axis the player can move before the camera follows.
 	public float yMargin = 1f;		// Distance in the y axis the player can move before the camera follows.
 	public float xSmooth = 8f;		// How smoothly the camera catches up with it's target movement in the x axis.
@@ -10,9 +26,11 @@ public class cameraFollow : MonoBehaviour {
 	public Vector2 maxXAndY;		// The maximum x and y coordinates the camera can have.
 	public Vector2 minXAndY;		// The minimum x and y coordinates the camera can have.
 
+	public int n=3;
+	Vector3 Dir;//摄像机要跟随物体的距离
+	public GameObject Player;//要跟随的物体
 
 	private Transform player;		// Reference to the player's transform.
-
 
 	void Awake ()
 	{
@@ -20,6 +38,12 @@ public class cameraFollow : MonoBehaviour {
 		player = GameObject.FindGameObjectWithTag("Player").transform;
 	}
 
+	void Start()
+	{
+		Dir.x = Player.transform.position.x - transform.position.x;
+		Dir.y = Player.transform.position.y - transform.position.y-n;
+	}
+	
 
 	bool CheckXMargin()
 	{
@@ -62,28 +86,8 @@ public class cameraFollow : MonoBehaviour {
 		targetY = Mathf.Clamp(targetY, minXAndY.y, maxXAndY.y);
 
 		// Set the camera's position to the target position with the same z component.
-		transform.position = new Vector3(targetX, targetY, transform.position.z);
-	}
-
-
-
-
-
-
-
-	/*
-	public int n=3;
-	Vector3 Dir;//摄像机要跟随物体的距离
-	public GameObject Player;//要跟随的物体
-	// Use this for initialization
-	void Start () {
-		Dir.x = Player.transform.position.x - transform.position.x;
-		Dir.y = Player.transform.position.y - transform.position.y-n;
-	}
-
-	// Update is called once per frame
-	void Update () {
 		transform.position = Player.transform.position - Dir;
+		//transform.position = new Vector3(targetX, targetY, transform.position.z);
 	}
 */
-}
+

@@ -8,7 +8,7 @@ public class spawnerFlower : MonoBehaviour
 	public GameObject flower;
 	public Transform pointPlatfomer;
 
-	void Start ()
+/*	void Start ()
 	{
 		Invoke("Spawn", spawnDelay);
 	}
@@ -18,15 +18,14 @@ public class spawnerFlower : MonoBehaviour
 	{
 		Instantiate(flower, pointPlatfomer.position, transform.rotation);
 	}
+*/
 	void Update()
 	{
-		/*spawnTime += Time.deltaTime;
+		spawnTime += Time.deltaTime;
 		if (spawnTime > spawnDelay) 
 		{
 			Instantiate(flower, pointPlatfomer.position, transform.rotation);
 			spawnTime -= spawnDelay;
 		}
-*/
-
 	}
 }
