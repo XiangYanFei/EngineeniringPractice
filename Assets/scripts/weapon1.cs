@@ -9,6 +9,8 @@ public class weapon1 : MonoBehaviour {
 	private playerControl playerCtrl;	
 	public Vector3 mousePositionInWorld;
 
+	public AudioClip attack;
+
 	void Awake()
 	{
 		
@@ -37,6 +39,7 @@ public class weapon1 : MonoBehaviour {
 				{	
 					//	print ("面向右不转身");
 					anim.SetTrigger ("Attack");
+					AudioSource.PlayClipAtPoint(attack,transform.localPosition);
 					Rigidbody knifeInstance = Instantiate (knife, transform.position, transform.rotation) as Rigidbody;
 					print ("aaa");
 				} 
@@ -49,6 +52,7 @@ public class weapon1 : MonoBehaviour {
 					transform.root.GetComponent<playerControl> ().bFaceRight = false;
 					anim.SetTrigger ("Attack");
 					Rigidbody knifeInstance = Instantiate (knife, transform.position, transform.rotation) as Rigidbody;
+					AudioSource.PlayClipAtPoint(attack,transform.localPosition);
 				}
 			}
 			if(transform.root.GetComponent<playerControl> ().bFaceRight==false) 
@@ -58,6 +62,7 @@ public class weapon1 : MonoBehaviour {
 					//print ("面向左不转身");
 					anim.SetTrigger ("Attack");
 					Rigidbody knifeInstance = Instantiate (knife, transform.position, transform.rotation) as Rigidbody;
+					AudioSource.PlayClipAtPoint(attack,transform.localPosition);
 				} 
 				if(mousePositionInWorld.x > gameObject.transform.parent.position.x)
 				{
@@ -68,6 +73,7 @@ public class weapon1 : MonoBehaviour {
 					gameObject.transform.parent.localScale = localScale;
 					transform.root.GetComponent<playerControl> ().bFaceRight = true;
 					Rigidbody knifeInstance = Instantiate (knife, transform.position, transform.rotation) as Rigidbody;
+					AudioSource.PlayClipAtPoint(attack,transform.localPosition);
 				}
 			}
 		}

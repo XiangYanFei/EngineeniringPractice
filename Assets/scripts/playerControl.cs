@@ -11,13 +11,17 @@ public class playerControl : MonoBehaviour {
 	public Rigidbody herobody;
 	public bool bJump = false;
 	private bool bGrounded = false;
-	//private SpriteRenderer blood;
+
 	private Animator anim;
 	public  float score=0;
+
+	public AudioClip jump;
+	//public AudioSource AttackAudio;    
 
 	private void Awake()
 	{
 		//blood = GameObject.Find("Health").GetComponent<SpriteRenderer>();
+
 	}
 
 	void Start () {
@@ -36,6 +40,9 @@ public class playerControl : MonoBehaviour {
 		{
 			herobody.AddForce (Vector2.up * JumpForce);
 			anim.SetTrigger ("Jump");
+
+			//GetComponent<AudioSource> ().Play ();
+			AudioSource.PlayClipAtPoint(jump,transform.localPosition);
 			bJump = false;
 		}
 	}
